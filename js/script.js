@@ -2,7 +2,7 @@ $(document).ready(
   function (){
     //  al submit(click tasto invio) della input dentro il my_form
     // prendo il valore della input e faccio eseguire la funzione di ricerca dei film
-    $('.my_form').on('submit', function(){
+    $('.my_button').on('click', function(){
       var testoRicerca = $('.my_input').val();
       risultatiRicercaFilm(testoRicerca);
     });
@@ -18,11 +18,10 @@ $(document).ready(
           language:'it-IT'
         },
         // in caso di successo libera la ul, fa partire la funzione
-        // di stampa dei risultati e ripristina la input
+        // di stampa dei risultati 
         success: function(dataFilm) {
           $('.my_film_list').html('');
           stampa(dataFilm.results);
-          testoRicerca;
         },
         error: function (richiesta, stato, errori) {
           alert('Errore');
