@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>boolflix</title>
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/master.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.6/handlebars.js"></script>
+  </head>
+  <body>
+    <!-- container -->
+    <div class="container">
+
+      <!-- titolo -->
+      <h1>Boolflix</h1>
+
+      <!-- row con search bar -->
+      <div class="row">
+        <form class="my_form">
+          <label class="sr-only">Cerca un film</label>
+          <input class="my_input" type="text" value="" placeholder="Cerca un film">
+        </form>
+      </div>
+
+      <!-- row con lista risultati che vengono stampati con handlebars -->
+      <div class="row">
+        <ul class="my_film_list">
+
+        </ul>
+      </div>
+    </div>
+
+    <!-- script template handlebars -->
+    <script id="entry-template" type="text/x-handlebars-template">
+      <div class="entry">
+        <li><h2>{{ title }}</h2></li>
+        <li>{{ original_title }}</li>
+        <li>{{ original_language }}</li>
+        <li>{{ vote_average }}</li>
+      </div>
+    </script>
+
+    <!-- script js -->
+    <script src="js/script.js" charset="utf-8"></script>
+  </body>
+</html>
