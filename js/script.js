@@ -1,32 +1,53 @@
 $(document).ready(
   function (){
-    //  al submit(click tasto invio) della input dentro il my_form
-    // prendo il valore della input e faccio eseguire la funzione di ricerca dei film
-    $('.my_button').on('click', function(){
-      var testoRicerca = $('.my_input').val();
-      risultatiRicercaFilm(testoRicerca);
-    });
+    // variabili per far partire la funzione di ricerca
+    var bottone = $('.my_button');
+    var enter = $('.my_input');
+    ricerca(bottone,enter);
+
+    // funzione di ricerca che al click su enter o sul bottone
+    //  mostra i risultati della chiamata ajax in base al valore della input
+    function ricerca(bottone,enter){
+      bottone.on('click',
+      function(){
+        var testoRicerca = $('.my_input').val();
+        risultatiRicercaFilm(testoRicerca);
+      });
+      enter.keypress(
+      function(){
+        if (event.which === 13) {
+          var testoRicerca = $('.my_input').val();
+          risultatiRicercaFilm(testoRicerca);
+        }
+      });
+    }
 
     // funzione di ricerca tramite chiamata ajax
     function risultatiRicercaFilm(testoRicerca){
       $.ajax({
         url:'https://api.themoviedb.org/3/search/movie',
+        url:'https://api.themoviedb.org/3/search/tv',
         method:'GET',
         data:{
           api_key:'7017856c6f87176e78043e5d12639259',
           query:testoRicerca,
-          language:'it-IT'
         },
         // in caso di successo libera la ul, fa partire la funzione
         // di stampa dei risultati
         success: function(dataFilm) {
-          $('.my_film_list').html('');
+          var lista = $('.my_film_list');
+          liberaLista(lista);
           stampa(dataFilm.results);
         },
         error: function (richiesta, stato, errori) {
           alert('Errore');
         }
       });
+    }
+
+    // funzione per liberare la listaFilm
+    function liberaLista(lista){
+      lista.html('');
     }
 
     //funzione che stampa ogni singolo risultato inerente al valore dell'input
@@ -38,9 +59,12 @@ $(document).ready(
         var singoloFilm = films[i];
         // context è un oggetto con dentro i valori da stampare tramite handlebars
         var context = {
-          title:singoloFilm.title,
-          original_title:singoloFilm.original_title,
-          original_language: stampaBandiera(singoloFilm.original_language),
+          poster_path: singoloFilm.poster_path,
+          title_film:singoloFilm.title,
+          title_tv_series:singoloFilm.name,
+          original_name_tv_series:singoloFilm.original_name,
+          original_title_film:singoloFilm.original_title,
+          original_language:stampaBandiera(singoloFilm.original_language),
           vote_average:stelle(singoloFilm.vote_average)
         }
         var html = template(context);
@@ -63,6 +87,8 @@ $(document).ready(
       return stelle;
     }
 
+    // funzione che stampa una bandiera
+    // se la lingua presente nell'array corrisponde al nome del file png
     function stampaBandiera(bandiera){
       var lingue = ['ad','ae','af','ag','ai','al','am','ao','aq','ar','as','at','au','aw','ax','az','ba','bb','bd','be','bf','bg',
       'bh','bi','bj','bl','bm','bn','bo','bq','br','bs','bt','bv','bw','by','bz','ca','cc','cd','cf','cg','ch','ci','ck','cl','cm','cn','co','cr',

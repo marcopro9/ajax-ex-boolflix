@@ -35,9 +35,10 @@
 
     <!-- script template handlebars -->
     <script id="entry-template" type="text/x-handlebars-template">
-        <h2>{{ title }}</h2>
+        <img src="https://image.tmdb.org/t/p/w154{{poster_path}}" alt="Film poster">
+        <h2>{{ title_film }} {{ title_tv_series }}</h2>
         <ul>
-          <li>Titolo originale: {{ original_title }}</li>
+          <li>Titolo originale: {{ original_title_film }} {{ original_name_tv_series }}</li>
           <li>Lingua originale: {{{original_language}}}</li>
           <li>Media-voto: {{{ vote_average }}}</li>
         </ul>
