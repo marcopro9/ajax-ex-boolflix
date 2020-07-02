@@ -18,7 +18,7 @@ $(document).ready(
           language:'it-IT'
         },
         // in caso di successo libera la ul, fa partire la funzione
-        // di stampa dei risultati 
+        // di stampa dei risultati
         success: function(dataFilm) {
           $('.my_film_list').html('');
           stampa(dataFilm.results);
@@ -36,10 +36,31 @@ $(document).ready(
 
       for (var i = 0; i < films.length; i++) {
         var singoloFilm = films[i];
-        var html = template(singoloFilm);
+        // context è un oggetto con dentro i valori da stampare tramite handlebars
+        var context = {
+          title:singoloFilm.title,
+          original_title:singoloFilm.original_title,
+          original_language: singoloFilm.original_language,
+          vote_average:stelle(singoloFilm.vote_average)
+        }
+        var html = template(context);
         var listaFilm = $('.my_film_list');
         listaFilm.append(html);
       }
     }
+    // funzione che mette in scala 1 a 5 la media voto e assegna
+    // una stellina piena per ogni punto, una vuota per i punti mancanti
+    function stelle(mediaVoto) {
+    var voto = Math.ceil(mediaVoto / 2);
+    var stelle = '';
+    for (var i = 1; i <= 5; i++) {
+        if (i <= voto) {
+          stelle += '<i class="fas fa-star"></i>';
+        }else {
+          stelle += '<i class="far fa-star"></i>';
+        }
+    }
+    return stelle;
+  }
   }
 );

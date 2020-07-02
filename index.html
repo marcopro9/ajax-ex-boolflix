@@ -19,28 +19,28 @@
       <h1>Boolflix</h1>
 
       <!-- row con search bar -->
-      <div class="row">
+      <header class="row">
         <label class="sr-only">Cerca un film</label>
         <input class="my_input" type="text" value="" placeholder="Cerca un film">
         <button class="my_button">cerca</button>
-      </div>
+      </header>
 
       <!-- row con lista risultati che vengono stampati con handlebars -->
       <div class="row">
-        <ul class="my_film_list">
+        <div class="my_film_list">
 
-        </ul>
+        </div>
       </div>
     </div>
 
     <!-- script template handlebars -->
     <script id="entry-template" type="text/x-handlebars-template">
-      <div class="entry">
-        <li><h2>{{ title }}</h2></li>
-        <li>{{ original_title }}</li>
-        <li>{{ original_language }}</li>
-        <li>{{ vote_average }}</li>
-      </div>
+        <h2>{{ title }}</h2>
+        <ul>
+          <li>Titolo originale: {{ original_title }}</li>
+          <li>Lingua originale: {{ original_language }}</li>
+          <li>Media-voto: {{{ vote_average }}}</li>
+        </ul>
     </script>
 
     <!-- script js -->
