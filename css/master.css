@@ -5,3 +5,63 @@
   box-sizing: border-box;
 }
 /* fine reset */
+body{
+  background-color: #000;
+}
+.my_row{
+  margin-bottom: 20px;
+}
+.my_logo{
+  height: 40px;
+  margin-top: 8px;
+}
+.my_col{
+  padding: 5px 0;
+}
+.my_input, .my_button{
+  margin-top: 12px;
+  line-height: 25px;
+  padding: 0 5px;
+  border-radius: 10px;
+}
+/*  */
+.my_film{
+  position: relative;
+  float: left;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  width:342px;
+  height:513px;
+}
+.my_film_poster{
+  width:100%;
+  vertical-align:top;
+  border: 1px solid lightgrey;
+}
+.my_film_details{
+  display: none;
+}
+.my_film:hover .my_film_poster{
+  -webkit-filter: brightness(50%);
+}
+.my_film:hover .my_film_details{
+  display: block;
+}
+.my_film_details{
+  position: absolute;
+  top: 5px;
+  padding: 0 15px;
+}
+.my_film_title{
+  margin: 10px 0;
+  color: #fff;
+}
+.my_film_infos{
+  list-style: none;
+  margin: 20px 0;
+}
+.my_film_infos li{
+  color: #fff;
+  font-size: 14px;
+  padding-bottom: 5px;
+}
